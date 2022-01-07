@@ -1,0 +1,162 @@
+openapi: 3.0.0
+
+info:
+  description: |
+    POC for transaction managment API
+  version: 1.0.0
+  title: TransMng API
+  
+paths:
+  /transaction:
+    post:
+      summary: Creates a new transaction
+      description: |
+        Receive the transaction information and store it into the system.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reference:
+                  description: The transaction unique reference number in our system. If not present, the system will generate one.
+                  type: string
+                account_iban:
+                  description: The IBAN number of the account where the transaction has happened.
+                  type: string
+                date:
+                  description: Date when the transaction took place
+                  type: string
+                amount:
+                  description: If positive the transaction is a credit (add money) to the account. If negative it is a debit (deduct money from the account)
+                  type: number
+                  format: float
+                fee:
+                  description: Fee that will be deducted from the amount, regardless on the amount being positive or negative.
+                  type: number
+                  format: float
+                description:
+                  description: The description of the transaction
+                  type: string
+              required:
+                - account_iban
+                - amount
+              example:
+                reference: 12345A
+                account_iban: ES9820385778983000760236
+                date: 2019-07-16T16:55:42.000Z
+                amount: 193.38
+                fee: 3.18
+                description: Restaurant payment
+      responses:
+        '200':
+          description: Transaction correctly created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    description: Transaction reference
+                    type: string
+                required:
+                  - id
+                example:
+                  id: 12345A
+        '409':
+          description: Transaction already exists
+        '422':
+          description: Malformed expected data
+        '500':
+          description: Unexpected API error
+    get:
+      summary: Searches for transactions
+      description: |
+        Searches for transactions
+      parameters:
+        - in: query
+          name: account_iban
+          schema:
+            type: string
+          description: The IBAN number of the account where the transaction
+        - in: query
+          name: sort
+          schema:
+            type: string
+          description: Sort by amount (ascending/descending)
+      responses:
+        '200':
+          description: Transactions correctly retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    description: Transactions references
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - items
+                example:
+                  items:
+                    - Transaction reference 1
+                    - Transaction reference 2
+                    - Transaction reference 3
+        '422':
+          description: Malformed expected data
+        '500':
+          description: Unexpected API error
+          
+  /transaction/{reference}/status:
+    get:
+      summary: Retrieves the status of a transaction
+      description:
+        Based on the payload and some business rules, will return the status and additional information for a specific transaction.
+      parameters:
+        - in: path
+          name: reference
+          required: true
+          schema:
+            type: string
+          description: Transaction reference number
+        - in: query
+          name: channel
+          schema:
+            type: string
+          description: The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL
+      responses:
+        '200':
+          description: Transaction status correctly retrieved
+          content:
+            application/json:
+               schema:
+                  type: object              
+                  properties:
+                    reference:
+                      description: The transaction reference number
+                      type: string
+                    status:
+                      description: The status of the transaction. It can be any of these values PENDING, SETTLED, FUTURE, INVALID
+                      type: string
+                    amount:
+                      description: the amount of the transaction
+                      type: number
+                      format: float
+                    fee:
+                      description: The fee applied to the transaction
+                      type: number
+                      format: float
+                  example:
+                    reference: 12345A
+                    status: PENDING
+                    amount: 193.38
+                    fee: 3.18
+        '404':
+          description: The transaction reference number does not exist
+        '422':
+          description: Malformed expected data
+        '500':
+          description: Unexpected API error
