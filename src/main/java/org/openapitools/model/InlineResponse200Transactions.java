@@ -10,10 +10,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * InlineObject
+ * InlineResponse200Transactions
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T18:39:14.364924800+01:00[Europe/Madrid]")
-public class InlineObject   {
+public class InlineResponse200Transactions   {
   @JsonProperty("reference")
   private String reference;
 
@@ -32,7 +32,7 @@ public class InlineObject   {
   @JsonProperty("description")
   private String description;
 
-  public InlineObject reference(String reference) {
+  public InlineResponse200Transactions reference(String reference) {
     this.reference = reference;
     return this;
   }
@@ -52,7 +52,7 @@ public class InlineObject   {
     this.reference = reference;
   }
 
-  public InlineObject accountIban(String accountIban) {
+  public InlineResponse200Transactions accountIban(String accountIban) {
     this.accountIban = accountIban;
     return this;
   }
@@ -61,8 +61,7 @@ public class InlineObject   {
    * The IBAN number of the account where the transaction has happened.
    * @return accountIban
   */
-  @ApiModelProperty(required = true, value = "The IBAN number of the account where the transaction has happened.")
-  @NotNull
+  @ApiModelProperty(value = "The IBAN number of the account where the transaction has happened.")
 
 
   public String getAccountIban() {
@@ -73,7 +72,7 @@ public class InlineObject   {
     this.accountIban = accountIban;
   }
 
-  public InlineObject date(String date) {
+  public InlineResponse200Transactions date(String date) {
     this.date = date;
     return this;
   }
@@ -93,7 +92,7 @@ public class InlineObject   {
     this.date = date;
   }
 
-  public InlineObject amount(Float amount) {
+  public InlineResponse200Transactions amount(Float amount) {
     this.amount = amount;
     return this;
   }
@@ -102,8 +101,7 @@ public class InlineObject   {
    * If positive the transaction is a credit (add money) to the account. If negative it is a debit (deduct money from the account)
    * @return amount
   */
-  @ApiModelProperty(required = true, value = "If positive the transaction is a credit (add money) to the account. If negative it is a debit (deduct money from the account)")
-  @NotNull
+  @ApiModelProperty(value = "If positive the transaction is a credit (add money) to the account. If negative it is a debit (deduct money from the account)")
 
 
   public Float getAmount() {
@@ -114,7 +112,7 @@ public class InlineObject   {
     this.amount = amount;
   }
 
-  public InlineObject fee(Float fee) {
+  public InlineResponse200Transactions fee(Float fee) {
     this.fee = fee;
     return this;
   }
@@ -134,7 +132,7 @@ public class InlineObject   {
     this.fee = fee;
   }
 
-  public InlineObject description(String description) {
+  public InlineResponse200Transactions description(String description) {
     this.description = description;
     return this;
   }
@@ -163,13 +161,13 @@ public class InlineObject   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineObject inlineObject = (InlineObject) o;
-    return Objects.equals(this.reference, inlineObject.reference) &&
-        Objects.equals(this.accountIban, inlineObject.accountIban) &&
-        Objects.equals(this.date, inlineObject.date) &&
-        Objects.equals(this.amount, inlineObject.amount) &&
-        Objects.equals(this.fee, inlineObject.fee) &&
-        Objects.equals(this.description, inlineObject.description);
+    InlineResponse200Transactions inlineResponse200Transactions = (InlineResponse200Transactions) o;
+    return Objects.equals(this.reference, inlineResponse200Transactions.reference) &&
+        Objects.equals(this.accountIban, inlineResponse200Transactions.accountIban) &&
+        Objects.equals(this.date, inlineResponse200Transactions.date) &&
+        Objects.equals(this.amount, inlineResponse200Transactions.amount) &&
+        Objects.equals(this.fee, inlineResponse200Transactions.fee) &&
+        Objects.equals(this.description, inlineResponse200Transactions.description);
   }
 
   @Override
@@ -180,7 +178,7 @@ public class InlineObject   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineObject {\n");
+    sb.append("class InlineResponse200Transactions {\n");
     
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    accountIban: ").append(toIndentedString(accountIban)).append("\n");

@@ -12,30 +12,30 @@ import javax.validation.constraints.*;
 /**
  * InlineResponse2001
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-07T13:55:52.047472600+01:00[Europe/Madrid]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T18:39:14.364924800+01:00[Europe/Madrid]")
 public class InlineResponse2001   {
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("reference")
+  private String reference;
 
-  public InlineResponse2001 id(String id) {
-    this.id = id;
+  public InlineResponse2001 reference(String reference) {
+    this.reference = reference;
     return this;
   }
 
   /**
    * Transaction reference
-   * @return id
+   * @return reference
   */
   @ApiModelProperty(required = true, value = "Transaction reference")
   @NotNull
 
 
-  public String getId() {
-    return id;
+  public String getReference() {
+    return reference;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setReference(String reference) {
+    this.reference = reference;
   }
 
 
@@ -48,12 +48,12 @@ public class InlineResponse2001   {
       return false;
     }
     InlineResponse2001 inlineResponse2001 = (InlineResponse2001) o;
-    return Objects.equals(this.id, inlineResponse2001.id);
+    return Objects.equals(this.reference, inlineResponse2001.reference);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(reference);
   }
 
   @Override
@@ -61,7 +61,7 @@ public class InlineResponse2001   {
     StringBuilder sb = new StringBuilder();
     sb.append("class InlineResponse2001 {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.model.InlineResponse200Transactions;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,36 +15,37 @@ import javax.validation.constraints.*;
 /**
  * InlineResponse200
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-07T13:55:52.047472600+01:00[Europe/Madrid]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T18:39:14.364924800+01:00[Europe/Madrid]")
 public class InlineResponse200   {
-  @JsonProperty("items")
+  @JsonProperty("transactions")
   @Valid
-  private List<String> items = new ArrayList<>();
+  private List<InlineResponse200Transactions> transactions = new ArrayList<>();
 
-  public InlineResponse200 items(List<String> items) {
-    this.items = items;
+  public InlineResponse200 transactions(List<InlineResponse200Transactions> transactions) {
+    this.transactions = transactions;
     return this;
   }
 
-  public InlineResponse200 addItemsItem(String itemsItem) {
-    this.items.add(itemsItem);
+  public InlineResponse200 addTransactionsItem(InlineResponse200Transactions transactionsItem) {
+    this.transactions.add(transactionsItem);
     return this;
   }
 
   /**
-   * Transactions references
-   * @return items
+   * Transactions
+   * @return transactions
   */
-  @ApiModelProperty(required = true, value = "Transactions references")
+  @ApiModelProperty(required = true, value = "Transactions")
   @NotNull
 
+  @Valid
 
-  public List<String> getItems() {
-    return items;
+  public List<InlineResponse200Transactions> getTransactions() {
+    return transactions;
   }
 
-  public void setItems(List<String> items) {
-    this.items = items;
+  public void setTransactions(List<InlineResponse200Transactions> transactions) {
+    this.transactions = transactions;
   }
 
 
@@ -56,12 +58,12 @@ public class InlineResponse200   {
       return false;
     }
     InlineResponse200 inlineResponse200 = (InlineResponse200) o;
-    return Objects.equals(this.items, inlineResponse200.items);
+    return Objects.equals(this.transactions, inlineResponse200.transactions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(transactions);
   }
 
   @Override
@@ -69,7 +71,7 @@ public class InlineResponse200   {
     StringBuilder sb = new StringBuilder();
     sb.append("class InlineResponse200 {\n");
     
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    transactions: ").append(toIndentedString(transactions)).append("\n");
     sb.append("}");
     return sb.toString();
   }

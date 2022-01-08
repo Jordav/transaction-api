@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.openapitools", "org.openapitools.api" , "org.openapitools.configuration", "dlmartin.transaction"})
 @EntityScan(basePackages = {"dlmartin.transaction.model.entities"} )
-@EnableJpaRepositories(basePackages = {"dlmartin.transaction.model.dao"})
+@EnableJpaRepositories(basePackages = {"dlmatin.transaction.model.dao"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
 
     @Override

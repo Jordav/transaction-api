@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-07T13:55:52.047472600+01:00[Europe/Madrid]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-01-08T18:39:14.364924800+01:00[Europe/Madrid]")
 @Validated
 @Api(value = "transaction", description = "the transaction API")
 public interface TransactionApi {
@@ -56,7 +56,7 @@ public interface TransactionApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"items\" : [ \"Transaction reference 1\", \"Transaction reference 2\", \"Transaction reference 3\" ] }";
+                    String exampleString = "{ \"transactions\" : [ { \"reference\" : \"reference\", \"account_iban\" : \"account_iban\", \"date\" : \"date\", \"amount\" : 0.8008282, \"fee\" : 6.0274563, \"description\" : \"description\" }, { \"reference\" : \"reference\", \"account_iban\" : \"account_iban\", \"date\" : \"date\", \"amount\" : 0.8008282, \"fee\" : 6.0274563, \"description\" : \"description\" } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -92,7 +92,7 @@ public interface TransactionApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"id\" : \"12345A\" }";
+                    String exampleString = "{ \"reference\" : \"12345A\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

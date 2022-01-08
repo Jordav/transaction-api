@@ -57,13 +57,13 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
+                  reference:
                     description: Transaction reference
                     type: string
                 required:
-                  - id
+                  - reference
                 example:
-                  id: 12345A
+                  reference: 12345A
         '409':
           description: Transaction already exists
         '422':
@@ -93,18 +93,34 @@ paths:
               schema:
                 type: object
                 properties:
-                  items:
-                    description: Transactions references
+                  transactions:
+                    description: Transactions 
                     type: array
                     items:
-                      type: string
+                      type: object
+                      properties:
+                        reference:
+                          description: The transaction unique reference number in our system. If not present, the system will generate one.
+                          type: string
+                        account_iban:
+                          description: The IBAN number of the account where the transaction has happened.
+                          type: string
+                        date:
+                          description: Date when the transaction took place
+                          type: string
+                        amount:
+                          description: If positive the transaction is a credit (add money) to the account. If negative it is a debit (deduct money from the account)
+                          type: number
+                          format: float
+                        fee:
+                          description: Fee that will be deducted from the amount, regardless on the amount being positive or negative.
+                          type: number
+                          format: float
+                        description:
+                          description: The description of the transaction
+                          type: string
                 required:
-                  - items
-                example:
-                  items:
-                    - Transaction reference 1
-                    - Transaction reference 2
-                    - Transaction reference 3
+                  - transactions
         '422':
           description: Malformed expected data
         '500':
