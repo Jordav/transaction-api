@@ -86,6 +86,11 @@ public class TransactionApiController implements TransactionApi {
 		
 		try {
 			
+			// Default channel is Client
+			if(null == channel) {
+				channel = TransactionSrv.CLIENT_CHANNEL;
+			}
+			
 			Transaction transaction = transactionSrv.getTransaction(reference); 
 			InlineResponse2002 response = new InlineResponse2002();
 			response.setReference(transaction.getReference());
@@ -98,7 +103,7 @@ public class TransactionApiController implements TransactionApi {
 			LOGGER.debug("Data not valid", ex);
 			return new ResponseEntity<InlineResponse2002>(HttpStatus.UNPROCESSABLE_ENTITY);
 		} catch (NotFoundException ex) {
-			LOGGER.debug("Safebox not found", ex);
+			LOGGER.debug("Transaction not found", ex);
 			return new ResponseEntity<InlineResponse2002>(HttpStatus.NOT_FOUND);
 		} catch (Exception ex) {
 			LOGGER.error("Unexpected API error", ex);

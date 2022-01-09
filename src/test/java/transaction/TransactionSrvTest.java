@@ -22,6 +22,7 @@ import dlmartin.transaction.model.dao.ITransactionDAO;
 import dlmartin.transaction.model.entities.Transaction;
 import dlmartin.transaction.model.exceptions.AlreadyExistException;
 import dlmartin.transaction.model.exceptions.DataNotValidException;
+import dlmartin.transaction.model.exceptions.NotFoundException;
 import dlmartin.transaction.services.TransactionSrv;
 
 @ExtendWith(SpringExtension.class)
@@ -45,9 +46,11 @@ public class TransactionSrvTest {
 	
 	private static final Float TRANSACTION_AMOUNT_INVALID = null;
 	private static final String TRANSACTION_IBAN_INVALID = null;
+	private static final String TRANSACTION_REFERENCE_INVALID = null;
 	
 	private static final String TRANSACTION_SEARCH_IBAN = "ES9820385778983000760236";
 	private static final String TRANSACTION_SEARCH_ORDER_INVALID = "TEST";
+	private static final String TRANSACTION_REFERENCE_NOT_EXISTS = "TEST";
 	
 	@Test
 	public void createTransaction_OK()  throws AlreadyExistException, DataNotValidException {
@@ -146,7 +149,7 @@ public class TransactionSrvTest {
 		List<Transaction> transactionList = new ArrayList<Transaction>();
 		transactionList.add(transaction);
 		
-		Mockito.when(transactionDao.findByAccountIbanByOrderByAmountAsc(TRANSACTION_SEARCH_IBAN)).thenReturn(transactionList);
+		Mockito.when(transactionDao.findByAccountIbanOrderByAmountAsc(TRANSACTION_SEARCH_IBAN)).thenReturn(transactionList);
 		
 		List<Transaction> resultList = transactionSrv.findTransactions(TRANSACTION_SEARCH_IBAN, TransactionSrv.ASC_ORDER);
 		
@@ -168,7 +171,7 @@ public class TransactionSrvTest {
 		List<Transaction> transactionList = new ArrayList<Transaction>();
 		transactionList.add(transaction);
 		
-		Mockito.when(transactionDao.findByAccountIbanByOrderByAmountDesc(TRANSACTION_SEARCH_IBAN)).thenReturn(transactionList);
+		Mockito.when(transactionDao.findByAccountIbanOrderByAmountDesc(TRANSACTION_SEARCH_IBAN)).thenReturn(transactionList);
 		
 		List<Transaction> resultList = transactionSrv.findTransactions(TRANSACTION_SEARCH_IBAN, TransactionSrv.DESC_ORDER);
 		
@@ -181,6 +184,43 @@ public class TransactionSrvTest {
 		
 		Assertions.assertThrows(DataNotValidException.class, () -> {
 			transactionSrv.findTransactions(TRANSACTION_SEARCH_IBAN, TRANSACTION_SEARCH_ORDER_INVALID);
+		  });
+	}
+	
+	@Test
+	public void getTransaction_without_reference() {
+		Assertions.assertThrows(DataNotValidException.class, () -> {
+			transactionSrv.getTransaction(TRANSACTION_REFERENCE_INVALID);
+		  });
+	}
+	
+	@Test
+	public void getTransaction_without_reference_not_exists() {
+		Assertions.assertThrows(NotFoundException.class, () -> {
+			Optional<Transaction> opt = Optional.empty();			
+			Mockito.when(transactionDao.findById(TRANSACTION_REFERENCE_NOT_EXISTS)).thenReturn(opt);
+			
+			transactionSrv.getTransaction(TRANSACTION_REFERENCE_NOT_EXISTS);
+		  });
+	}
+	
+	@Test
+	public void getTransaction_OK() {
+		Assertions.assertThrows(DataNotValidException.class, () -> {
+			Transaction transaction = new Transaction();
+			transaction.setReference(TRANSACTION_REFERENCE);
+			transaction.setAccountIban(TRANSACTION_IBAN);
+			transaction.setAmount(TRANSACTION_AMOUNT);
+			transaction.setDate(LocalDateTime.parse(TRANSACTION_DATE, DateTimeFormatter.ISO_DATE_TIME));
+			transaction.setDescription(TRANSACTION_DESCRIPTION);
+			transaction.setFee(TRANSACTION_FEE);
+			Optional<Transaction> opt = Optional.of(transaction);
+			
+			Mockito.when(transactionDao.findById(TRANSACTION_REFERENCE)).thenReturn(opt);
+			
+			Transaction transactionResult = transactionSrv.getTransaction(TRANSACTION_REFERENCE_INVALID);
+			
+			assertEquals(transaction.getReference(), transactionResult.getReference());
 		  });
 	}
 }

@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,7 @@ import dlmartin.transaction.model.exceptions.NotFoundException;
 @Component
 public class TransactionSrv {
 	
-	Logger logger = LoggerFactory.getLogger(TransactionSrv.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TransactionSrv.class);
 
 	public static final String CLIENT_CHANNEL = "CLIENT";
 	public static final String ATM_CHANNEL = "ATM";
@@ -71,10 +72,15 @@ public class TransactionSrv {
 	public String createTransaction(String reference, String accountIban, String date, 
 			Float amount, Float fee, String description) throws AlreadyExistException, DataNotValidException {
 
-		logger.debug("createTransaction begins with reference " + reference + ", accountIban " + accountIban + ", date: " + date +
+		LOGGER.debug("createTransaction begins with reference " + reference + ", accountIban " + accountIban + ", date: " + date +
 				", amount: " + amount + ", fee " + fee + ", description: " + description);
 
 		String result = null;
+		
+		// If reference is not present, the system will generate one.
+		if(null == reference) {
+			reference = UUID.randomUUID().toString();
+		}		
 
 		if (transactionDao.findById(reference).isEmpty()) {
 			if (null != accountIban && null != amount) {
@@ -88,7 +94,7 @@ public class TransactionSrv {
 				transaction = transactionDao.save(transaction);
 				result = transaction.getReference();
 				
-				logger.debug("createTransaction ends with result " + result);
+				LOGGER.debug("createTransaction ends with result " + result);
 				return result;
 			} else {
 				throw new DataNotValidException();
@@ -98,11 +104,18 @@ public class TransactionSrv {
 		}
 	}
 
-	
+	/**
+	 * Method in charge of searching for transactions that meet the conditions specified in the parameters
+	 * 
+	 * @param accountIban The IBAN number of the account where the transaction
+	 * @param order Sort by amount (ascending/descending)
+	 * @return List of transactions
+	 * @throws DataNotValidException order parameter with invalid value
+	 */
 	public List<Transaction> findTransactions(String accountIban, String order)
 			throws DataNotValidException {
 
-		logger.debug("findTransactions begins with accountIban " + accountIban + ", order " + order);
+		LOGGER.debug("findTransactions begins with accountIban " + accountIban + ", order " + order);
 
 		List<Transaction> result = null;
 		
@@ -112,9 +125,9 @@ public class TransactionSrv {
 			if (null == order) {
 				result = transactionDao.findByAccountIban(accountIban);
 			} else if (ASC_ORDER.equals(order)) {
-				result = transactionDao.findByAccountIbanByOrderByAmountAsc(accountIban);
+				result = transactionDao.findByAccountIbanOrderByAmountAsc(accountIban);
 			} else if (DESC_ORDER.equals(order)) {
-				result = transactionDao.findByAccountIbanByOrderByAmountDesc(accountIban);
+				result = transactionDao.findByAccountIbanOrderByAmountDesc(accountIban);
 			} else {
 				throw new DataNotValidException();
 			}
@@ -133,15 +146,22 @@ public class TransactionSrv {
 			}
 		}		
 		
-		logger.debug("findTransactions ends with result " + result);
+		LOGGER.debug("findTransactions ends with result " + result);
 		return result;
 	}
 	
-	
+	/**
+	 * Method that retrieves the transaction with the reference passed as parameters
+	 * 
+	 * @param reference Transaction reference number
+	 * @return Transaction with the reference
+	 * @throws DataNotValidException reference parameter with invalid value
+	 * @throws NotFoundException Transaction with the reference passed as parameter not exists
+	 */
 	public Transaction getTransaction(String reference) 
 			throws DataNotValidException, NotFoundException {
 		
-		logger.debug("getTransaction begins with reference " + reference);
+		LOGGER.debug("getTransaction begins with reference " + reference);
 		
 		if(null != reference) {
 			Optional<Transaction> transactionOpt = transactionDao.findById(reference);

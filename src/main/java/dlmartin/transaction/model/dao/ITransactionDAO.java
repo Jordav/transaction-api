@@ -11,6 +11,6 @@ public interface ITransactionDAO extends CrudRepository<Transaction, String>{
 	 public List<Transaction> findAllByOrderByAmountDesc();
 	 public List<Transaction> findAllByOrderByAmountAsc();
 	 public List<Transaction> findByAccountIban(String accountIban);
-	 public List<Transaction> findByAccountIbanByOrderByAmountDesc(String accountIban);
-	 public List<Transaction> findByAccountIbanByOrderByAmountAsc(String accountIban);
+	 public List<Transaction> findByAccountIbanOrderByAmountDesc(String accountIban);
+	 public List<Transaction> findByAccountIbanOrderByAmountAsc(String accountIban);
 }

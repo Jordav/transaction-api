@@ -28,7 +28,7 @@ public class Transaction {
 	/**
 	 * Account IBAN asociated to 
 	 */
-	@Column(name = "iban", length = 24, nullable = false)
+	@Column(length = 24, nullable = false)
 	private String accountIban;
 	
 	/**
@@ -81,6 +81,12 @@ public class Transaction {
 		return amount;
 	}
 	
+	/**
+	 * Retrieves amount value depending of channel parameter value
+	 * 
+	 * @param channel Channel that call the method 
+	 * @return Amount value
+	 */
 	public Float getAmount(String channel) {
 		switch (channel) {
 		case TransactionSrv.CLIENT_CHANNEL:
@@ -101,6 +107,12 @@ public class Transaction {
 		return fee;
 	}
 	
+	/**
+	 * Retrieves fee value depending of channel parameter value
+	 * 
+	 * @param channel Channel that call the method 
+	 * @return Fee value
+	 */
 	public Float getFee(String channel) {
 		switch (channel) {
 		case TransactionSrv.CLIENT_CHANNEL:
@@ -125,6 +137,13 @@ public class Transaction {
 		this.description = description;
 	}
 
+	/**
+	 * Calculate status of transaction depending of channel parameter value
+	 * and the transaction date
+	 * 
+	 * @param channel Channel that call the method 
+	 * @return Status value
+	 */
 	public String getStatus(String channel) {
 		
 		if(this.getDate().toLocalDate().isBefore(LocalDate.now())) {
