@@ -91,7 +91,7 @@ public class Transaction {
 		switch (channel) {
 		case TransactionSrv.CLIENT_CHANNEL:
 		case TransactionSrv.ATM_CHANNEL:
-			return this.getAmount() - this.getFee();
+			return Math.round((this.getAmount() - this.getFee()) * 100.0f) / 100.0f;
 		case TransactionSrv.INTERNAL_CHANNEL:
 			return this.getAmount();
 		default:
