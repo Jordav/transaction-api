@@ -82,14 +82,14 @@ public class TransactionSrv {
 			reference = UUID.randomUUID().toString();
 		}		
 
-		if (transactionDao.findById(reference).isEmpty()) {
+		if (!transactionDao.findById(reference).isPresent()) {
 			if (null != accountIban && null != amount) {
 				Transaction transaction = new Transaction();
 				transaction.setReference(reference);
 				transaction.setAmount(amount);
 				transaction.setAccountIban(accountIban);
 				transaction.setDate(LocalDateTime.parse(date, DateTimeFormatter.ISO_DATE_TIME));
-				transaction.getFee();
+				transaction.setFee(fee);
 				transaction.setDescription(description);
 				transaction = transactionDao.save(transaction);
 				result = transaction.getReference();
@@ -166,7 +166,7 @@ public class TransactionSrv {
 		if(null != reference) {
 			Optional<Transaction> transactionOpt = transactionDao.findById(reference);
 			
-			if (!transactionOpt.isEmpty()) {
+			if (transactionOpt.isPresent()) {
 				return transactionOpt.get();
 				
 			} else {

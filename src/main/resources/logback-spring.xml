@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<include
+		resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+	<logger name="dlmartin.transaction" level="DEBUG" />
+	<logger name="org.springframework" level="INFO" />
+
+	<appender name="APPENDER"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+			<charset>utf8</charset>
+		</encoder>
+	</appender>
+		
+	<root level="INFO">
+		<appender-ref ref="APPENDER" />
+	</root>
+</configuration>

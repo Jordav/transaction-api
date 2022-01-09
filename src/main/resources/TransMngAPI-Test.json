@@ -1,0 +1,3212 @@
+{
+	"info": {
+		"_postman_id": "8c0da7ef-5e22-4d0d-9473-f740d6bcf169",
+		"name": "TransMng API - Test",
+		"description": "POC for transaction managment API\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "Create Transaction - OK",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"reference\":\"12345A\",\n\"account_iban\":\"ES9820385778983000760236\",\n\"date\":\"2019-07-16T16:55:42.000Z\",\n\"amount\":193.38,\n\"fee\":3.18,\n\"description\":\"Restaurant payment\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						},
+						"description": "Receive the transaction information and store it into the system.\n"
+					},
+					"response": [
+						{
+							"name": "Transaction correctly created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\"\n}"
+						},
+						{
+							"name": "Transaction already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Create Transaction - OK Future",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"reference\":\"12345B\",\n\"account_iban\":\"ES9820385778983000760236\",\n\"date\":\"2039-07-16T16:55:42.000Z\",\n\"amount\":193.38,\n\"fee\":3.18,\n\"description\":\"Restaurant payment\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						},
+						"description": "Receive the transaction information and store it into the system.\n"
+					},
+					"response": [
+						{
+							"name": "Transaction correctly created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\"\n}"
+						},
+						{
+							"name": "Transaction already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Create Transaction - Error reference already exists",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"reference\":\"12345A\",\n\"account_iban\":\"ES9820385778983000760236\",\n\"date\":\"2019-07-16T16:55:42.000Z\",\n\"amount\":193.38,\n\"fee\":3.18,\n\"description\":\"Restaurant payment\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						},
+						"description": "Receive the transaction information and store it into the system.\n"
+					},
+					"response": [
+						{
+							"name": "Transaction correctly created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\"\n}"
+						},
+						{
+							"name": "Transaction already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Create Transaction - Error without Amount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"account_iban\":\"ES9820385778983000760236\",\n\"date\":\"2019-07-16T16:55:42.000Z\",\n\"fee\":3.18,\n\"description\":\"Restaurant payment\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						},
+						"description": "Receive the transaction information and store it into the system.\n"
+					},
+					"response": [
+						{
+							"name": "Transaction correctly created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\"\n}"
+						},
+						{
+							"name": "Transaction already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Create Transaction - Error Without IBAN",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"date\":\"2019-07-16T16:55:42.000Z\",\n\"amount\":193.38,\n\"fee\":3.18,\n\"description\":\"Restaurant payment\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						},
+						"description": "Receive the transaction information and store it into the system.\n"
+					},
+					"response": [
+						{
+							"name": "Transaction correctly created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\"\n}"
+						},
+						{
+							"name": "Transaction already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Create Transaction - OK without reference",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"account_iban\":\"ES1111111111111111111111\",\n\"date\":\"2019-07-16T16:55:42.000Z\",\n\"amount\":190.38,\n\"fee\":3.18,\n\"description\":\"Restaurant payment\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						},
+						"description": "Receive the transaction information and store it into the system.\n"
+					},
+					"response": [
+						{
+							"name": "Transaction correctly created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\"\n}"
+						},
+						{
+							"name": "Transaction already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_iban\": \"consectetur Duis nis\",\n    \"amount\": 78980701.90068993,\n    \"reference\": \"et eu\",\n    \"date\": \"deserunt labore\",\n    \"fee\": -54120652.74548521,\n    \"description\": \"irure Ex\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Search transaction OK - without acount and sort",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "account_iban",
+									"value": "exercitation reprehenderit nulla ipsum",
+									"description": "The IBAN number of the account where the transaction",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "ASC",
+									"description": "Sort by amount (ascending/descending)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Searches for transactions\n"
+					},
+					"response": [
+						{
+							"name": "Transactions correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"transactions\": [\n  {\n   \"reference\": \"Lorem ipsum\",\n   \"account_iban\": \"qui sit dolor\",\n   \"date\": \"non tempor incididunt dolor qui\",\n   \"amount\": -26053758.050888434,\n   \"fee\": 32419500.54316835,\n   \"description\": \"aliqua nostrud est\"\n  },\n  {\n   \"reference\": \"quis anim deserunt\",\n   \"account_iban\": \"labore\",\n   \"date\": \"eu do adipisicing non e\",\n   \"amount\": -59400789.642971754,\n   \"fee\": 43300019.35533872,\n   \"description\": \"aliquip eiusmod do\"\n  }\n ]\n}"
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Search transaction OK - without acount but with sort ASC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction?sort=ASC",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "account_iban",
+									"value": "exercitation reprehenderit nulla ipsum",
+									"description": "The IBAN number of the account where the transaction",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "ASC",
+									"description": "Sort by amount (ascending/descending)"
+								}
+							]
+						},
+						"description": "Searches for transactions\n"
+					},
+					"response": [
+						{
+							"name": "Transactions correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"transactions\": [\n  {\n   \"reference\": \"Lorem ipsum\",\n   \"account_iban\": \"qui sit dolor\",\n   \"date\": \"non tempor incididunt dolor qui\",\n   \"amount\": -26053758.050888434,\n   \"fee\": 32419500.54316835,\n   \"description\": \"aliqua nostrud est\"\n  },\n  {\n   \"reference\": \"quis anim deserunt\",\n   \"account_iban\": \"labore\",\n   \"date\": \"eu do adipisicing non e\",\n   \"amount\": -59400789.642971754,\n   \"fee\": 43300019.35533872,\n   \"description\": \"aliquip eiusmod do\"\n  }\n ]\n}"
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Search transaction OK - without acount but with sort DESC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction?sort=DESC",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "account_iban",
+									"value": "exercitation reprehenderit nulla ipsum",
+									"description": "The IBAN number of the account where the transaction",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "DESC",
+									"description": "Sort by amount (ascending/descending)"
+								}
+							]
+						},
+						"description": "Searches for transactions\n"
+					},
+					"response": [
+						{
+							"name": "Transactions correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"transactions\": [\n  {\n   \"reference\": \"Lorem ipsum\",\n   \"account_iban\": \"qui sit dolor\",\n   \"date\": \"non tempor incididunt dolor qui\",\n   \"amount\": -26053758.050888434,\n   \"fee\": 32419500.54316835,\n   \"description\": \"aliqua nostrud est\"\n  },\n  {\n   \"reference\": \"quis anim deserunt\",\n   \"account_iban\": \"labore\",\n   \"date\": \"eu do adipisicing non e\",\n   \"amount\": -59400789.642971754,\n   \"fee\": 43300019.35533872,\n   \"description\": \"aliquip eiusmod do\"\n  }\n ]\n}"
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Search transaction Error - sort value invalid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction?sort=TEST",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "account_iban",
+									"value": "exercitation reprehenderit nulla ipsum",
+									"description": "The IBAN number of the account where the transaction",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "TEST",
+									"description": "Sort by amount (ascending/descending)"
+								}
+							]
+						},
+						"description": "Searches for transactions\n"
+					},
+					"response": [
+						{
+							"name": "Transactions correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"transactions\": [\n  {\n   \"reference\": \"Lorem ipsum\",\n   \"account_iban\": \"qui sit dolor\",\n   \"date\": \"non tempor incididunt dolor qui\",\n   \"amount\": -26053758.050888434,\n   \"fee\": 32419500.54316835,\n   \"description\": \"aliqua nostrud est\"\n  },\n  {\n   \"reference\": \"quis anim deserunt\",\n   \"account_iban\": \"labore\",\n   \"date\": \"eu do adipisicing non e\",\n   \"amount\": -59400789.642971754,\n   \"fee\": 43300019.35533872,\n   \"description\": \"aliquip eiusmod do\"\n  }\n ]\n}"
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Search transaction OK - with account but without sort",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction?account_iban=ES9820385778983000760236",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "account_iban",
+									"value": "ES9820385778983000760236",
+									"description": "The IBAN number of the account where the transaction"
+								},
+								{
+									"key": "sort",
+									"value": "exercitation reprehenderit nulla ipsum",
+									"description": "Sort by amount (ascending/descending)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Searches for transactions\n"
+					},
+					"response": [
+						{
+							"name": "Transactions correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"transactions\": [\n  {\n   \"reference\": \"Lorem ipsum\",\n   \"account_iban\": \"qui sit dolor\",\n   \"date\": \"non tempor incididunt dolor qui\",\n   \"amount\": -26053758.050888434,\n   \"fee\": 32419500.54316835,\n   \"description\": \"aliqua nostrud est\"\n  },\n  {\n   \"reference\": \"quis anim deserunt\",\n   \"account_iban\": \"labore\",\n   \"date\": \"eu do adipisicing non e\",\n   \"amount\": -59400789.642971754,\n   \"fee\": 43300019.35533872,\n   \"description\": \"aliquip eiusmod do\"\n  }\n ]\n}"
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction?account_iban=exercitation reprehenderit nulla ipsum&sort=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "account_iban",
+											"value": "exercitation reprehenderit nulla ipsum"
+										},
+										{
+											"key": "sort",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Status of transaction - OK without channel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/:reference/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								":reference",
+								"status"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "exercitation reprehenderit nulla ipsum",
+									"description": "The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "12345A",
+									"description": "(Required) Transaction reference number"
+								}
+							]
+						},
+						"description": "Based on the payload and some business rules, will return the status and additional information for a specific transaction."
+					},
+					"response": [
+						{
+							"name": "Transaction status correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\",\n \"status\": \"PENDING\",\n \"amount\": 193.38,\n \"fee\": 3.18\n}"
+						},
+						{
+							"name": "The transaction reference number does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Status of transaction - OK Future without channel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/:reference/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								":reference",
+								"status"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "exercitation reprehenderit nulla ipsum",
+									"description": "The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "12345B",
+									"description": "(Required) Transaction reference number"
+								}
+							]
+						},
+						"description": "Based on the payload and some business rules, will return the status and additional information for a specific transaction."
+					},
+					"response": [
+						{
+							"name": "Transaction status correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\",\n \"status\": \"PENDING\",\n \"amount\": 193.38,\n \"fee\": 3.18\n}"
+						},
+						{
+							"name": "The transaction reference number does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Status of transaction - OK with ATM",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/:reference/status?channel=ATM",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								":reference",
+								"status"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "ATM",
+									"description": "The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL"
+								}
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "12345A",
+									"description": "(Required) Transaction reference number"
+								}
+							]
+						},
+						"description": "Based on the payload and some business rules, will return the status and additional information for a specific transaction."
+					},
+					"response": [
+						{
+							"name": "Transaction status correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\",\n \"status\": \"PENDING\",\n \"amount\": 193.38,\n \"fee\": 3.18\n}"
+						},
+						{
+							"name": "The transaction reference number does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Status of transaction - OK Future with ATM",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/:reference/status?channel=ATM",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								":reference",
+								"status"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "ATM",
+									"description": "The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL"
+								}
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "12345B",
+									"description": "(Required) Transaction reference number"
+								}
+							]
+						},
+						"description": "Based on the payload and some business rules, will return the status and additional information for a specific transaction."
+					},
+					"response": [
+						{
+							"name": "Transaction status correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\",\n \"status\": \"PENDING\",\n \"amount\": 193.38,\n \"fee\": 3.18\n}"
+						},
+						{
+							"name": "The transaction reference number does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Status of transaction - OK with Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/:reference/status?channel=CLIENT",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								":reference",
+								"status"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "CLIENT",
+									"description": "The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL"
+								}
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "12345A",
+									"description": "(Required) Transaction reference number"
+								}
+							]
+						},
+						"description": "Based on the payload and some business rules, will return the status and additional information for a specific transaction."
+					},
+					"response": [
+						{
+							"name": "Transaction status correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\",\n \"status\": \"PENDING\",\n \"amount\": 193.38,\n \"fee\": 3.18\n}"
+						},
+						{
+							"name": "The transaction reference number does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Status of transaction - OK Future with Client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/:reference/status?channel=CLIENT",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								":reference",
+								"status"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "CLIENT",
+									"description": "The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL"
+								}
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "12345B",
+									"description": "(Required) Transaction reference number"
+								}
+							]
+						},
+						"description": "Based on the payload and some business rules, will return the status and additional information for a specific transaction."
+					},
+					"response": [
+						{
+							"name": "Transaction status correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\",\n \"status\": \"PENDING\",\n \"amount\": 193.38,\n \"fee\": 3.18\n}"
+						},
+						{
+							"name": "The transaction reference number does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Status of transaction - OK with INTERNAL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/:reference/status?channel=INTERNAL",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								":reference",
+								"status"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "INTERNAL",
+									"description": "The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL"
+								}
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "12345A",
+									"description": "(Required) Transaction reference number"
+								}
+							]
+						},
+						"description": "Based on the payload and some business rules, will return the status and additional information for a specific transaction."
+					},
+					"response": [
+						{
+							"name": "Transaction status correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\",\n \"status\": \"PENDING\",\n \"amount\": 193.38,\n \"fee\": 3.18\n}"
+						},
+						{
+							"name": "The transaction reference number does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Status of transaction - OK Future with INTERNAL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/:reference/status?channel=INTERNAL",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								":reference",
+								"status"
+							],
+							"query": [
+								{
+									"key": "channel",
+									"value": "INTERNAL",
+									"description": "The type of the channel that is asking for the status. It can be any of these values CLIENT, ATM, INTERNAL"
+								}
+							],
+							"variable": [
+								{
+									"key": "reference",
+									"value": "12345B",
+									"description": "(Required) Transaction reference number"
+								}
+							]
+						},
+						"description": "Based on the payload and some business rules, will return the status and additional information for a specific transaction."
+					},
+					"response": [
+						{
+							"name": "Transaction status correctly retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"reference\": \"12345A\",\n \"status\": \"PENDING\",\n \"amount\": 193.38,\n \"fee\": 3.18\n}"
+						},
+						{
+							"name": "The transaction reference number does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Malformed expected data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Unexpected API error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction/:reference/status?channel=exercitation reprehenderit nulla ipsum",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction",
+										":reference",
+										"status"
+									],
+									"query": [
+										{
+											"key": "channel",
+											"value": "exercitation reprehenderit nulla ipsum"
+										}
+									],
+									"variable": [
+										{
+											"key": "reference"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	]
+}

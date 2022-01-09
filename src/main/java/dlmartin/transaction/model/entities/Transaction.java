@@ -117,7 +117,7 @@ public class Transaction {
 		switch (channel) {
 		case TransactionSrv.CLIENT_CHANNEL:
 		case TransactionSrv.ATM_CHANNEL:
-			return 0f;
+			return null;
 		case TransactionSrv.INTERNAL_CHANNEL:
 			return this.getFee();
 		default:
@@ -166,5 +166,12 @@ public class Transaction {
 		return TransactionSrv.INVALID_STATUS;
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Transaction [reference=" + reference + ", accountIban=" + accountIban + ", date=" + date + ", amount="
+				+ amount + ", fee=" + fee + ", description=" + description + "]";
+	}
+	
 	
 }
